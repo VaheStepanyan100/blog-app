@@ -15,7 +15,7 @@ class Post < ApplicationRecord
 
   # Methods
   def update_user_posts_counter
-    author.update(posts_counter: author.posts_counter + 1)
+    author.update(posts_counter: author.posts.count + 1)
   end
 
   def five_most_recent_comments
