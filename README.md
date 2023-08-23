@@ -9,7 +9,7 @@
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
-  - [� Getting Started ](#-getting-started-)
+  - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
     - [Usage](#usage)
@@ -134,7 +134,7 @@ If you like this project, give it a ⭐️!
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-- [Microverse](https://www.microverse.org/)
+I would like thank Microverse for giving me this opportunity to work on this wonderful project.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
