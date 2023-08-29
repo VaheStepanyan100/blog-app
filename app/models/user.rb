@@ -8,7 +8,7 @@ class User < ApplicationRecord
   attribute :name, :string
   attribute :photo, :string
   attribute :bio, :text
-  attribute :post_counter, :integer, default: 0
+  attribute :posts_counter, :integer, default: 0
 
   # Validations
   validates :name, presence: true
