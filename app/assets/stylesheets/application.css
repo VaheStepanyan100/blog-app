@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-  ul {
+ul {
   padding: 0;
   margin: 0;
 }
@@ -23,7 +23,7 @@ a {
   color: black;
 }
 
- .user-box {
+.user-box {
   display: flex;
   margin-bottom: 1rem;
 }
@@ -74,7 +74,6 @@ a {
   justify-content: flex-end;
 }
 
-
 .pagination {
   display: flex;
   justify-content: center;
@@ -95,4 +94,4 @@ a {
   border: black solid 2px;
   padding: 0.5rem 0.5rem;
   margin-bottom: 1rem;
-} 
+}
