@@ -1,5 +1,19 @@
 class UsersController < ApplicationController
-  def index; end
+  before_action :find_user, only: [:show]
 
-  def show; end
+  def index
+    @users = User.all
+  end
+
+  def show
+    @three_recent_posts = @user.three_most_recent_posts
+  end
+
+  def find_user
+    @user = User.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    # Handle the situation when the post is not found
+    flash[:alert] = 'User not found, back to users page'
+    redirect_to users_path
+  end
 end
