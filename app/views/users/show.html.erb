@@ -1,18 +1,17 @@
 <a href="<%= user_posts_path(@user) %>">
   <button id="back-btn">⬅</button>
 </a>
-<ul>
-<li><div class="user-box">
-  <%= render partial: 'shared/user_photo', locals: { user: @user } %>
+<div class="user-box">
   <%= render partial: 'shared/user_details', locals: { user: @user } %>
-</div></li>
-<li><div class="bio">
+</div>
+<div class="bio">
   <h3>Bio</h3>
   <p>
     <%= @user.bio%>
   </p>
-</div></li>
+</div>
 <% @three_recent_posts.each do |post| %>
+  <a href="<%= user_post_path(@user, post) %>>">
     <div class="post bio">
       <h3>Post <%= raw "#" + post.id.to_s %></h3>
       <p><%= post.text %></p>
@@ -21,8 +20,8 @@
         <span>Likes: <%= post.likes_counter %></span>
       </div>
    </div>
+  </a>
 <% end %>
 <a href="<%= user_posts_path(@user) %>">
   <button id="pagination">See all posts</button>
 </a>
-</ul>
