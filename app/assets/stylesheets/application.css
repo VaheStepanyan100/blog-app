@@ -13,9 +13,10 @@
  *= require_tree .
  *= require_self
  */
-ul {
+ ul {
   padding: 0;
   margin: 0;
+  list-style-type: none;
 }
 
 a {
@@ -36,6 +37,10 @@ a {
   border-radius: 5px;
 }
 
+d-flex {
+  display: flex;
+}
+
 .user-details {
   width: 100%;
   background-color: #f0f0f0;
@@ -43,6 +48,7 @@ a {
   border-radius: 5px;
   padding: 10px;
   margin-left: 0.5rem;
+  text-align: center;
 }
 
 .user-name {
@@ -94,4 +100,8 @@ a {
   border: black solid 2px;
   padding: 0.5rem 0.5rem;
   margin-bottom: 1rem;
+}
+
+w-100 {
+  width: 100%;
 }
