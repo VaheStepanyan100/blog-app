@@ -13,8 +13,7 @@
  *= require_tree .
  *= require_self
  */
-
-ul {
+ ul {
   padding: 0;
   margin: 0;
   list-style-type: none;
@@ -32,9 +31,7 @@ a {
 
 .user-photo {
   width: 4rem;
-  height: 4rem;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  background-color: black;
   border-radius: 5px;
 }
 
@@ -43,13 +40,15 @@ a {
 }
 
 .user-details {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   border-radius: 5px;
+  text-align: center;
   padding: 10px;
   margin-left: 0.5rem;
-  text-align: center;
 }
 
 .user-name {
@@ -58,8 +57,6 @@ a {
 }
 
 .posts-count {
-  display: flex;
-  justify-content: flex-end;
   font-size: 14px;
 }
 
@@ -87,8 +84,6 @@ a {
 }
 
 #pagination {
-  display: flex;
-  justify-content: center;
   margin: 1rem auto;
   padding: 1rem;
 }

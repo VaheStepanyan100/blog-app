@@ -1,7 +1,7 @@
-<a href="<%= user_path(@user)%>">
+<a href="<%= user_path(@user) %>">
   <button id="back-btn">⬅</button>
 </a>
-<h1>Create a new Post</h1>
+<h1>Create a New Post</h1>
 <%= form_with model: [@user, @post], local: true do |form| %>
   <div class="field">
     <%= form.label :title %>
