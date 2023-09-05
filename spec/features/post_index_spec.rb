@@ -24,6 +24,11 @@ RSpec.feature 'Post Index', type: :feature do
     expect(page).to have_content("first post's title")
   end
 
+  scenario 'see a section for pagination if there are more posts than fit on the view' do
+    visit user_posts_path(user)
+    expect(page).to have_content('Pagination')
+  end
+
   scenario "clicking on a post, it redirects me to that post's show page" do
     visit user_posts_path(user)
     click_link "first post's title"
