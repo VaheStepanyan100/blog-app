@@ -31,7 +31,7 @@
         </a>
     <% end %>
     <nav class="">
-        <p>Pagination</p>
+        <p class="center">Pagination</p>
         <ul class="pagination justify-content-center">
             <% (1..@total_pages).each do |page| %>
                 <li class="page-item"><a class="" href="/users/<%= @author.id %>/posts?page=<%= page %>"><%= page %></a></li>
