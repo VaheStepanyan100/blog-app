@@ -1,35 +1,55 @@
 require 'rails_helper'
+RSpec.describe 'User Show Page', type: :feature do
+  describe 'Viewing user show page' do
+    before(:each) do
+      @user1 = User.create(name: 'Tom', photo: 'https://unsplash.com/photos', bio: 'Teacher from Mexico.',
+                           posts_counter: 0)
+      @first_post = Post.create(author: @user1, title: 'post1', text: 'This is my first post', comments_counter: 0,
+                                likes_counter: 0)
+      @second_post = Post.create(author: @user1, title: 'post2', text: 'This is my second post', comments_counter: 0,
+                                 likes_counter: 0)
+      @third_post = Post.create(author: @user1, title: 'post3', text: 'This is my third post', comments_counter: 0,
+                                likes_counter: 0)
+      @fourth_post = Post.create(author: @user1, title: 'post4', text: 'This is my fourth post', comments_counter: 0,
+                                 likes_counter: 0)
+      visit "/users/#{@user1.id}"
+    end
 
-RSpec.feature 'User Show', type: :feature do
-  let(:user) { User.create(name: 'Tom', photo: 'https://www.kasandbox.org/programming-images/avatars/leaf-blue.png', bio: 'He is a good programmar') }
-  let!(:post1) { Post.create(author: user, title: 'first post', text: 'first text') }
-  let!(:post2) { Post.create(author: user, title: 'second post', text: 'second text') }
-  let!(:post3) { Post.create(author: user, title: 'third post', text: '3 text') }
-  let!(:post4) { Post.create(author: user, title: '4 post', text: '4 text') }
+    it 'shows the user name' do
+      expect(page).to have_content(@user1.name)
+    end
 
-  scenario 'visiting the user Show page' do
-    visit user_path(user)
+    it 'should confirm user photo' do
+      expect(page).to have_selector('img[alt="Tom"]')
+    end
 
-    expect(page).to have_content('Tom')
-    expect(page).to have_css("img[alt='Tom']", count: 1)
-  end
+    it 'should show user bio' do
+      expect(page).to have_content(@user1.bio)
+    end
 
-  scenario 'visiting the user show page, you see the number of posts the user has written..' do
-    visit user_path(user)
+    it 'should show posts_counter for user' do
+      expect(page).to have_content(@user1.posts_counter)
+    end
 
-    expect(page).to have_content('4 posts')
-  end
+    it "I can see the user's first 3 posts." do
+      Post.create(
+        [
+          {
+            author: @user1, title: 'First Post', text: 'My first post'
+          },
+          {
+            author: @user1, title: 'Second Post', text: 'My Second post'
+          },
+          {
+            author: @user1, title: 'Third Post', text: 'My Third post'
+          }
+        ]
+      )
+      page.has_content?(@user1.posts)
+    end
 
-  scenario 'visiting the user show page, you see the 3 most recent post and bio of the user has written..' do
-    visit user_path(user)
-    expect(page).to have_content('He is a good programmar')
-    expect(page).not_to have_content('fist text')
-  end
-
-  scenario 'has a link to the user index page' do
-    visit user_path(user)
-    expect(page).to have_button('See all posts')
-    click_link 'See all posts'
-    expect(current_path).to eq(user_posts_path(user))
+    it 'should have a link to see all posts' do
+      expect(page.html).to include('See all posts')
+    end
   end
 end

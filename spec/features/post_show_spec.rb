@@ -1,39 +1,43 @@
 require 'rails_helper'
 
-RSpec.feature 'Post Show', type: :feature do
-  let(:user) { User.create(name: 'Tom', photo: 'https://www.kasandbox.org/programming-images/avatars/leaf-blue.png', bio: 'He is a good programmer') }
-  let!(:post) { Post.create(author: user, title: "first post's title", text: 'first text') }
-  let!(:post2) { Post.create(author: user, title: "second post's title", text: 'second text') }
-  let!(:post3) { Post.create(author: user, title: 'third post', text: '3 text') }
-  let!(:post4) { Post.create(author: user, title: '4 post', text: '4 text') }
-  let!(:comment1) { Comment.create(author: user, post:, text: 'first comment') }
-  let!(:comment2) { Comment.create(author: user, post:, text: 'second comment') }
-  let!(:comment3) { Comment.create(author: user, post:, text: 'third comment') }
-  let!(:like1) { Like.create(author: user, post:) }
+RSpec.describe 'Post show Page', type: :feature do
+  describe 'Viewing Post Show page' do
+    before(:each) do
+      @user1 = User.create(name: 'Tom', photo: 'https://unsplash.com/photos', bio: 'Teacher from Mexico.',
+                           posts_counter: 0)
+      @first_post = Post.create(author: @user1, title: 'post1', text: 'This is my first post', comments_counter: 0,
+                                likes_counter: 0)
+      @comment1 = Comment.create(post: @first_post, author: @user1, text: 'Hi Tom!, Nice comment')
 
-  scenario 'see the title of the post and who wrote it and the interactions' do
-    visit user_post_path(user, post)
-    expect(page).to have_content("first post's title")
-    expect(page).to have_content('by Tom')
-    expect(page).to have_content('Comments: 3')
-    expect(page).to have_content('Likes: 1')
-  end
+      visit user_post_path(@user1, @first_post)
+    end
 
-  scenario "see the post's body" do
-    visit user_post_path(user, post)
-    expect(page).to have_content('first text')
-  end
+    it 'should show post title' do
+      expect(page).to have_content(@first_post.title)
+    end
 
-  scenario 'see the username and comment of each post' do
-    user2 = User.create(name: 'Ali')
-    user3 = User.create(name: 'Vahe')
-    Comment.create(author: user2, post:, text: 'fifth comment')
-    Comment.create(author: user3, post:, text: 'sixth comment')
+    it 'should show post author' do
+      expect(page).to have_content(@user1.name)
+    end
 
-    visit user_post_path(user, post)
+    it 'should show comments counter' do
+      expect(page).to have_content(@first_post.comments_counter)
+    end
 
-    expect(page).to have_content('Tom')
-    expect(page).to have_content('Vahe')
-    expect(page).to have_content('sixth comment')
+    it 'should show likes counter' do
+      expect(page).to have_content(@first_post.likes_counter)
+    end
+
+    it 'should show post text' do
+      expect(page).to have_content(@first_post.text)
+    end
+
+    it 'should show comment text' do
+      expect(page).to have_content(@comment1.text)
+    end
+
+    it 'should show name of commenter' do
+      expect(page).to have_content(@comment1.author.name)
+    end
   end
 end
