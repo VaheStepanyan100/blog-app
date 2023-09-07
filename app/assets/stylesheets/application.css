@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  box-sizing: border-box;
+}
+
 ul {
   padding: 0;
   margin: 0;
@@ -104,4 +109,12 @@ a {
 
 .center {
   text-align: center;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.v-hidden {
+  visibility: hidden;
 }
