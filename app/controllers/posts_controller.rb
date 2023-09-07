@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
-  before_action :find_user, only: %i[index show like unlike]
-  before_action :find_post, only: %i[show like unlike]
+  load_and_authorize_resource
+
+  before_action :find_user, only: %i[index show like unlike destroy]
+  before_action :find_post, only: %i[show like unlike destroy]
 
   def index
     page = params[:page] || 1
@@ -32,6 +34,14 @@ class PostsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def destroy
+    @post.likes.destroy_all
+    @post.comments.destroy_all
+    @post.destroy
+
+    redirect_to user_posts_path(@user)
   end
 
   def like
